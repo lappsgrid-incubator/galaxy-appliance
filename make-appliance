@@ -2,7 +2,7 @@
 set -e
 
 if [ -d build ] ; then
-	echo "Cleaning up from previous build."
+	echo "Cleaning up from a previous build."
 	rm -rf build
 fi
 cp -R galaxy build

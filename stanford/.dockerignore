@@ -3,3 +3,5 @@ tool_conf.groovy
 Makefile
 VERSION
 package_list.txt
+*.log
+test.lsd

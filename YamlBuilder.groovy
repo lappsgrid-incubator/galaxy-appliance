@@ -28,8 +28,7 @@ args.each {
 	println "            - ${++port}:8080"
 }
 
-println """
-    galaxy:
+println """    galaxy:
         build: build
         image: lappsgrid/galaxy-appliance
         ports:

@@ -4,27 +4,27 @@ services:
         build: gate
         image: lappsgrid/gate   
         ports:
-            - "8080:8080"
+            - "8001:8080"
     stanford:
         build: stanford
         image: lappsgrid/stanford
         ports:
-            - "8080:8080"
+            - "8002:8080"
     lingpipe:
         build: lingpipe
         image: lappsgrid/lingpipe
         ports:
-            - "8080:8080"
+            - "8003:8080"
     masc:
         build: masc
         image: lappsgrid/masc
         ports:
-            - "8080:8080"
+            - "8004:8080"
     oaqa:
         build: oaqa
         image: lappsgrid/oaqa
         ports:
-            - "8080:8080"
+            - "8005:8080"
     galaxy:
         build: galaxy
         image: lappsgrid/galaxy

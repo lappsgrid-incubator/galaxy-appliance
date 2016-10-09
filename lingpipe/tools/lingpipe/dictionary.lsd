@@ -1,0 +1,12 @@
+#!/usr/bin/env lsd
+
+String dictionary_file = args[0]
+String input = args[1]
+String output = args[2]
+
+ServiceClient service = new ServiceClient("http://lingpipe:8080/LingpipeServices/1.0.0/services/LingpipeDictionaryBasedNER")
+
+Data dc = Serializer.parse(new File(input).text, Data)
+dc.setParameter("dictionary", new File(dictionary_file).text);
+String result = service.execute(dc.asJson())
+new File(output).text = result

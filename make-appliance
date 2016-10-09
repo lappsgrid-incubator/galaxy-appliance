@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -e
+
+if [ -d build ] ; then
+	echo "Cleaning up from previous build."
+	rm -rf build
+fi
+cp -R galaxy build
+cp build/tool_conf_template.xml build/tool_conf.xml
+
+#tce -c build/tool_conf.xml -o /tmp/conf.xml gate/tool_conf.groovy
+#tce -c /tmp/conf.xml -o /tmp/conf.xml lingpipe/tool_conf.groovy
+#exit
+
+groovy YamlBuilder.groovy $@ > docker-compose.yml
+#exit
+
+while [ -n "$1" ] ; do
+	echo "Building $1"
+	cp -R $1/tools build
+	if [ -z "$2" ] ; then
+		# Minimize (remove empty sections) when building the final tool_conf.xml
+		OPTS="-m"
+	fi
+	tce $OPTS -c build/tool_conf.xml -o build/tool_conf.xml $1/tool_conf.groovy
+	shift
+done
+
+cd build
+make
+

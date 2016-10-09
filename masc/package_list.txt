@@ -1,0 +1,3 @@
+MASC-3.0.0
+MASC-3.0.0-json
+MascDataSource_2.2.0

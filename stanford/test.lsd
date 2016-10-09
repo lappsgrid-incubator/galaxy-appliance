@@ -1,0 +1,81 @@
+#!/usr/bin/env lsd
+
+// Change 'root' to point to the URL of the installed services.  In general this will be:
+//     http://localhost:<port>:8080/<war filename>/services
+// where:
+//    <port> is the port number mapping used when starting the container
+//    <war filename> is the name of the .war file deployed to Tomcat.  If the filename
+//        contains a '#' character that will be translated to a '/' is the URL.  So the
+//        URL to the services in a war file named foo#bar.war will be:
+//        http://localhost:<port>/foo/bar/services
+// The recommended practice in LAPPS is to append the version number to the name so
+// different versions of a war file can be hosted without having to worry about 
+// collisions in URLs.
+String root = "http://localhost:8080/StanfordServices/2.1.0/services"
+
+String id = null
+String name = 'stanford'
+String image = "lappsgrid/$name"
+
+// If the Docker container is not running we need to start one
+if (isRunning(image)) {
+	println "The Docker container is already running."
+}
+else {
+	println "Starting a Docker container."
+	String command = "docker run -d -p 8080:8080 --name $name $image"
+	id = command.execute().text
+	println "Waiting for the container to finish startup."	
+	sleep(2000)
+}
+
+// The input data to be processed.
+String json = new Data(Uri.TEXT, "Goodbye cruel world I am leaving you today.  Goodbye.").asJson()
+
+// Run the tokenizer, splitter, tagger, and named entity recognizer.
+//['Tokenizer', 'SentenceSplitter', 'Tagger', 'NamedEntityRecognizer'].each { svc ->
+['Tokenizer', 'SentenceSplitter', 'Tagger'].each { svc ->
+	println "Running $svc"
+	def service = new ServiceClient("$root/$svc")
+	json = service.execute(json)
+}
+
+// If 'id' has been set it means we started the container and are responsible for
+// shutting it down.
+if (id != null) {
+	println "Shutting down the Docker container."
+	println "docker rm -f $id".execute().text
+}
+
+// Now validate the output.
+DataContainer data = Serializer.parse(json, DataContainer)
+if (data.discriminator == Uri.ERROR) {
+	println "An error was encountered during processing."
+	println data.payload
+	return
+}
+//new File('/tmp/test.lif').text = data.asPrettyJson()
+
+Container container = data.payload 
+validate(container, Uri.TOKEN, 11)
+validate(container, Uri.SENTENCE, 2)
+validate(container, Uri.POS, 11)
+println "Done"
+return
+
+boolean validate(Container container, String type, int expected) {
+	List<View> views = container.views.findAll { it.metadata.contains[type] }
+	if (views.size() == 0) {
+		println "Could not find a view with $type annotations."
+	}
+	else if (views.size() > 1) {
+		println "Found more than one view with $type annotations."
+	}
+	else if (views[0].annotations.size() != expected) {
+		println "Error: expected $expected annotations but found ${views[0].annotations.size()}"
+	}	
+}
+
+boolean isRunning(String image) {
+	"docker ps".execute().text.contains(image)
+}

@@ -1,0 +1,5 @@
+build/
+./**/packages/
+**/*.tgz
+docker-compose.yml
+*.log

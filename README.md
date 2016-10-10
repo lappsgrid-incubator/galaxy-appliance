@@ -25,6 +25,8 @@ Some scripts and tools are provided to automate as much of the task as possible,
 
 The `make-appliance` script expects the [Tool Config Editor](https://github.com/oanc/tool-conf-editor) to be available and the `tce` script used to launch the editor is available on the system `$PATH`.  A pre-built binary distribution of the Tool Conf Editory is available [here](http://www.anc.org/downloads/ToolConfEditor-latest.tgz).
 
+[Groovy](https://groovy-lang.org) (2.4.x or later) is required to run the `YamlBuilder.groovy` script that is used to generate the *docker-compose.yml* file.
+
 ## Usage
 
 ```bash
@@ -44,7 +46,17 @@ The web services running the Docker service containers should support the [LAPP 
 
 ## Galaxy Configuration
 
+**TODO**
+
+1. Explain tool wrapper. See https://docs.galaxyproject.org/en/latest/dev/schema.html
+1. Script used to run the tool
+1. Updating the tool_conf.xml file used to populate the Tools menu in Galaxy.
+
 ## Docker Compose
+
+**TODO**
+
+1. YamlBuilder.groovy
 
 
 

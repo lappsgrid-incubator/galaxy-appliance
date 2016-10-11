@@ -42,7 +42,9 @@ where a `module` is the name of the Docker containers to include in the applianc
 
 ## Service Containers
 
-The web services running the Docker service containers should support the [LAPP Grid API](http://wiki.lappsgrid.org/org.lappsgrid.api/apidocs/index.html). While not a hard requirement, it does make it easier to compose workflows in Galaxy if all service speak the same APIs and data formats.
+The web services running in the Docker containers should be SOAP services that support the [LAPP Grid API](http://wiki.lappsgrid.org/org.lappsgrid.api/apidocs/index.html). While not a hard requirement, it does make it easier to compose workflows in Galaxy if all service speak the same APIs and data formats. Implementing a LAPPS Grid service is beyond the scope of this document, but see [this tutorial](https://github.com/lapps/org.lappsgrid.example.java.whitespacetokenizer/tree/Step1-Maven) for information on writing a LAPPS Grid web service.  The remainder of this document assumes the file *Service.war* that can be run in Tomcat has already be created.
+
+There are two ways
 
 ## Galaxy Configuration
 

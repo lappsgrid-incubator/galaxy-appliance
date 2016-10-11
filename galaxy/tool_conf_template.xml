@@ -6,6 +6,9 @@
     </section>
     <section id="masc" name="MASC">
     </section>
+    <section id="cmu.deiis" name="DEISS (11-791)">
+    	<tool file="deiis/proxy.xml"/>
+    </section>
 	<section id="tokenizers" name="Tokenizers">
 	</section>
 	<section id="splitters" name="Sentence Splitters">

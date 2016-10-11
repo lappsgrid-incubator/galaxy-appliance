@@ -1,7 +1,7 @@
 VERSION=$(shell cat VERSION)
 export PACKAGE_LIST=$(shell cat package_list.txt)
 
-IMAGE=lappsgrid/$(NAME)
+IMAGE=$(APPLIANCE)/$(NAME)
 
 latest:
 	../packages.sh update

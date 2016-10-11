@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+export APPLIANCE=deiis
+
 if [ -d build ] ; then
 	echo "Cleaning up from a previous build."
 	rm -rf build
@@ -23,6 +25,9 @@ while [ -n "$1" ] ; do
 		OPTS="-m"
 	fi
 	tce $OPTS -c build/tool_conf.xml -o build/tool_conf.xml $1/tool_conf.groovy
+	cd $1 
+	make
+	cd -
 	shift
 done
 

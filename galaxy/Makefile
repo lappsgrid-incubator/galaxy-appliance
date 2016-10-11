@@ -1,3 +1,3 @@
-NAME=galaxy-appliance
+NAME=galaxy
 
 include ../Makefile.master

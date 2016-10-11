@@ -4,6 +4,8 @@
  * LAPP Grid Galaxy Appliance.
  */
  
+String appliance = 'deiis'
+
 if (args.size() == 0) {
 	println '''
 USAGE 
@@ -23,14 +25,14 @@ println "services:"
 args.each {
 	println "    ${it}:"
 	println "        build: $it"
-	println "        image: lappsgrid/$it"
+	println "        image: $appliance/$it"
 	println "        ports:"
 	println "            - ${++port}:8080"
 }
 
 println """    galaxy:
         build: build
-        image: lappsgrid/galaxy-appliance
+        image: $appliance/galaxy
         ports:
             - "80:80"
         depends_on:"""

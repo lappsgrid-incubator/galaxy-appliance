@@ -28,17 +28,25 @@
     <datatype extension="xls" type="galaxy.datatypes.tabular:Tabular"/>
     <datatype extension="oauth" type="galaxy.datatypes.data:Text" display_in_upload="true" description="An OAuth2 token" subclass="True"/>
     <datatype extension="gate" type="galaxy.datatypes.text:Gate" display_in_upload="true">
+    <!--
       <converter file="gate_to_lif_converter.xml" target_datatype="lif"/>
       <converter file="gate_to_lif_converter.xml" target_datatype="lapps"/>
+    -->
     </datatype>
     <datatype extension="ldc" type="galaxy.datatypes.text:LDC" display_in_upload="True">
+    <!--
       <converter file="gigaword2lif.xml" target_datatype="lif"/>
+    -->
     </datatype>
     <datatype extension="lif" type="galaxy.datatypes.text:Lif" display_in_upload="True">
+    <!--
       <converter file="lif_to_gate_converter.xml" target_datatype="gate"/>
+    -->
     </datatype>
     <datatype extension="lapps" type="galaxy.datatypes.text:Lapps" display_in_upload="True">
+    <!--
       <converter file="lif_to_gate_converter.xml" target_datatype="gate"/>
+    -->
     </datatype>
     <datatype extension="json" type="galaxy.datatypes.text:Json" display_in_upload="True"/>
     <!-- graph datatypes -->

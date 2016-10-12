@@ -10,13 +10,8 @@ if [ -d build ] ; then
 	rm -rf build
 fi
 cp -R galaxy build
-cp build/tool_conf_template.xml build/tool_conf.xml
 
-#tce -c build/tool_conf.xml -o /tmp/conf.xml gate/tool_conf.groovy
-#tce -c /tmp/conf.xml -o /tmp/conf.xml lingpipe/tool_conf.groovy
-#exit
-
-groovy YamlBuilder.groovy $@ > docker-compose.yml
+groovy YamlBuilder.groovy $APPLIANCE $@ > docker-compose.yml
 
 while [ -n "$1" ] ; do
 	echo "Building $1"
@@ -26,9 +21,9 @@ while [ -n "$1" ] ; do
 		OPTS="-m"
 	fi
 	tce $OPTS -c build/tool_conf.xml -o build/tool_conf.xml $1/tool_conf.groovy
-	cd $1 
-	make
-	cd -
+	#cd $1 
+	#make
+	#cd -
 	shift
 done
 

@@ -4,19 +4,20 @@
  * LAPP Grid Galaxy Appliance.
  */
  
-String appliance = 'deiis'
-
 if (args.size() == 0) {
 	println '''
 USAGE 
-    groovy YamlBuilder.groovy module [module ...]
+    groovy YamlBuilder.groovy <repository name> module [module ...]
 
 EXAMPLE
-    groovy YamlBuilder.groovy masc oaqa lingpipe gate stanford
+    groovy YamlBuilder.groovy lappsgrid masc oaqa lingpipe gate stanford
     
 '''
 	return
 }
+
+String appliance = args[0]
+args = args[1..-1]
 
 int port = 8000
 
@@ -24,15 +25,14 @@ println "version: '2'"
 println "services:"
 args.each {
 	println "    ${it}:"
-	println "        build: $it"
+//	println "        build: $it"
 	println "        image: $appliance/$it"
 	println "        ports:"
 	println "            - ${++port}:8080"
 }
 
 println """    galaxy:
-        build: build
-        image: $appliance/galaxy
+        image: $appliance/galaxy-keith
         ports:
             - "80:80"
         depends_on:"""

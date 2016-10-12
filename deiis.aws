@@ -5,6 +5,12 @@
 // The list of containers we will be creating.
 List containers = [ 'masc', 'oaqa', 'lingpipe', 'stanford', 'galaxy' ]
 
+// The Amazon cluster this task will be attached to.  This cluster must be created
+// before defining the task in Amazon.
+// See: https://console.aws.amazon.com/ecs/home?region=us-east-1#/clusters
+// See: https://console.aws.amazon.com/ecs/home?region=us-east-1#/taskDefinitions
+String CLUSTER = 'lappsgrid-deiis-cluster'
+
 /* 
  * Configuration maps
  * These configuration maps allow us to see the various settings 
@@ -23,11 +29,12 @@ ports = [
 // there are 1024 "cpu units" available for every core in the instance.
 // If no value is specified for a container the default value is used.
 cpu = [
-	default: 256
+	default: 128,
+	galaxy: 256
 ]
 
 
-// The amount of memory allocated to the container. In no value is 
+// The amount of memory allocated to the container. If no value is 
 // specified for a container the default value will be used.
 memory = [
 	default: 512,
@@ -35,6 +42,10 @@ memory = [
 	stanford: 1024,
 	galaxy: 4096
 ]
+
+/*****************************************************/
+/*** NO CHANGES SHOULD BE NEEDED BELOW THIS POINT. ***/
+/*****************************************************/
 
 // Other containers the given container should be linked to .  Docker
 // creates entries in the container's /etc/hosts file so a container 
@@ -83,7 +94,6 @@ containerDefinitions (
 			essential: true,
 			portMappings: map(from, to),
 			command: [ '/usr/bin/startup' ]
-		//	links: links[name]
 		]
 		if (links[name]) {
 			definition.links = links[name]
@@ -106,5 +116,5 @@ volumes ([[
 	name: "galaxy_storage",
     host: [ sourcePath: "/usr/local/galaxy"]
 ]])
-family "lappsgrid-discovery-appliance" 
+family CLUSTER
 

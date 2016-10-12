@@ -1,6 +1,7 @@
 // The JSONC Groovy DSL that defines the JSON configuration
 // to launch the Lappsgrid DEIIS course appliance inside
 // Amazon ECS (Elastic Container Service).
+// See: https://console.aws.amazon.com/ecs/home?region=us-east-1#/taskDefinitions
 
 // The list of containers we will be creating.
 List containers = [ 'masc', 'oaqa', 'lingpipe', 'stanford', 'galaxy' ]
@@ -8,15 +9,8 @@ List containers = [ 'masc', 'oaqa', 'lingpipe', 'stanford', 'galaxy' ]
 // The Amazon cluster this task will be attached to.  This cluster must be created
 // before defining the task in Amazon.
 // See: https://console.aws.amazon.com/ecs/home?region=us-east-1#/clusters
-// See: https://console.aws.amazon.com/ecs/home?region=us-east-1#/taskDefinitions
 String CLUSTER = 'lappsgrid-deiis-cluster'
 
-/* 
- * Configuration maps
- * These configuration maps allow us to see the various settings 
- * for each Docker container grouped together in one place.
- */
- 
 // Port mapping for each container.  The 'from' field is the
 // external server port and the 'to' field is the port inside
 // the container.  If no port mapping is defined then incrementing 
@@ -50,12 +44,13 @@ memory = [
 // Other containers the given container should be linked to .  Docker
 // creates entries in the container's /etc/hosts file so a container 
 // can reference the other containers by name, e.g. 
-// http://vassar:8080, http://galaxy, etc.
+// http://vassar, http://galaxy, etc.
 links = [
+	// Galaxy is linked to everything but itself
 	galaxy: containers - 'galaxy'
 ]
 
-// The Docker image to be used for the container. 
+// The Docker images to be used for the appliance. 
 images = containers.inject([:]) { map,name -> 
 	if (name == 'galaxy') {
 		map[name] = 'lappsgrid/galaxy-deiis'

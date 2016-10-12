@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-export APPLIANCE=deiis
+#export APPLIANCE=deiis
+export APPLIANCE=$1
+shift
 
 if [ -d build ] ; then
 	echo "Cleaning up from a previous build."
@@ -15,7 +17,6 @@ cp build/tool_conf_template.xml build/tool_conf.xml
 #exit
 
 groovy YamlBuilder.groovy $@ > docker-compose.yml
-#exit
 
 while [ -n "$1" ] ; do
 	echo "Building $1"

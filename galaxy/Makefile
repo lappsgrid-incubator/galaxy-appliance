@@ -1,3 +1,3 @@
-NAME=galaxy
+NAME=galaxy-keith
 
 include ../Makefile.master

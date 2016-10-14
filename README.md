@@ -18,25 +18,28 @@ A **LAPPS/Galaxy Docker Appliance**, or simply an *appliance*, is a network of D
 
 ## Pre-requisites
 
-The `make-appliance` script expects the [Tool Config Editor](https://github.com/oanc/tool-conf-editor) is installed and the `tce` script used to launch the editor is available on the `$PATH`.  A pre-built binary distribution of the Tool Conf Editory is available [here](http://www.anc.org/downloads/ToolConfEditor-latest.tgz).
+1. The `make-appliance` script expects a program named `tce` (Tool Config Editor) to be available on the system `$PATH`.  A pre-built binary distribution of the Tool Conf Editor is available [here](http://www.anc.org/downloads/ToolConfEditor-latest.tgz).  Copy the `tce` script and jar file to a directory on the system `$PATH`, or copy them to a new directory and add that directory to your `$PATH`.
 
-[Groovy](https://groovy-lang.org) (2.4.x or later) is required to run the `YamlBuilder.groovy` script that is used to generate the *docker-compose.yml* file.
+ The source code for the Tool Config Editor is available from [GitHub](https://github.com/oanc/tool-conf-editor).
+
+1. [Groovy](https://groovy-lang.org) (2.4.x or later) is required to run the `YamlBuilder.groovy` script that is used to generate the *docker-compose.yml* file.
+
+1. The [jsonc](http://www.anc.org/downloads/jsonc-latest.tgz) (JSON Compiler) program is required to generate the JSON task definitions for Amazon ECS (Elastic Container Service).  Installation of `jsonc` is similar to the installation process for the `tce` program; copy the `jsonc` script file and jar file on the system `$PATH`.
 
 ## Usage
 
 ```bash
-$> ./make-appliance module [module ...]
+$> ./make-appliance <repository name> image [image ...]
 ```
 
-where a `module` is the name of the Docker containers to include in the appliance.
+where `<repository name>` is the name of a repository on `hub.docker.com` and `image [image ...] ` is the name of the Docker images to include in the appliance.
 
 **EXAMPLE**
 
 ```bash
-$> ./make-appliance gate masc oaqa
+$> ./make-appliance lappsgrid gate masc oaqa
 $> docker-compose up
 ```
-
 
 # Creating Appliances
 
@@ -92,7 +95,8 @@ See [here](http://wiki.lappsgrid.org/technical/docker.html) for more information
 
 **TODO**
 
-1. YamlBuilder.groovy
+1. Use the `YamlBuilder.groovy` Groovy script to generate a `docker-compose.yml` file that can be used to launch all the Docker containers.  This is mostly useful for testing appliances locally.
+1. Use `jsonc` and the `deiis.aws` script to generate the Amazon ECS task definition needed to launch the appliance in Amazon ECS.
 
 
 

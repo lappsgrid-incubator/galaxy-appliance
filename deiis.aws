@@ -3,21 +3,32 @@
  *
  */
 
-containers = [ 'masc', 'oaqa', 'lingpipe', 'stanford' ]
+//containers = [ 'masc', 'oaqa', 'lingpipe', 'stanford' ]
+containers = [ 'masc' ]
 galaxy_image = 'lappsgrid/galaxy-keith'
 cluster = 'lappsgrid-deiis-cluster'
-ports = [
-	galaxy: [from:80, to:80]
-]
+
 cpu = [
 	default: 128,
 	galaxy: 256
 ]
+
 memory = [
 	default: 512,
 	lingpipe: 1024,
 	stanford: 1024,
 	galaxy: 4096
+]
+
+mounts = [
+	galaxy: [
+		[
+			name: 'galaxy_storage',
+			source: '/usr/local/galaxy',
+			container: '/export',
+			readOnly: false
+		]
+	]
 ]
 
 include 'base_appliance.aws'

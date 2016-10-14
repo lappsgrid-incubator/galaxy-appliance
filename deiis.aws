@@ -1,10 +1,8 @@
 /*
  * The Lappsgrid DEIIS appliance definition.
- *
  */
-
-//containers = [ 'masc', 'oaqa', 'lingpipe', 'stanford' ]
-containers = [ 'masc' ]
+ 
+containers = [ 'masc', 'oaqa', 'lingpipe', 'stanford' ]
 galaxy_image = 'lappsgrid/galaxy-keith'
 cluster = 'lappsgrid-deiis-cluster'
 
@@ -31,4 +29,4 @@ mounts = [
 	]
 ]
 
-include 'base_appliance.aws'
+include 'create_appliance.aws'

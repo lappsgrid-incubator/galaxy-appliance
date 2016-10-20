@@ -4,7 +4,7 @@ String service = args[0]
 String input = args[1]
 String output = args[2]
 
-String url = "http://stanford:8080/StanfordServices/2.1.0/${service}" 
+String url = "http://stanford:8080/StanfordServices/2.1.0/services/${service}" 
 ServiceClient client = new ServiceClient(url)
 String json = new File(input).text
 new File(output).text = client.execute(json)

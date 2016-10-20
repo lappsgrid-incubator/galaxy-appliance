@@ -5,34 +5,34 @@ IMAGE=$(APPLIANCE)/$(NAME)
 
 latest:
 	../packages.sh update
-	docker build -t $(IMAGE) .
+	sudo docker build -t $(IMAGE) .
 
 image:
 	../packages.sh update
-	docker build -t $(IMAGE):$(VERSION) .
+	sudo docker build -t $(IMAGE):$(VERSION) .
 	
 packages:
 	../packages.sh download
 	
 push:
-	docker push $(IMAGE)
+	sudo docker push $(IMAGE)
 	
 tag:
-	docker tag $(IMAGE) $(IMAGE):$(VERSION) && docker push $(IMAGE):$(VERSION)
+	sudo docker tag $(IMAGE) $(IMAGE):$(VERSION) && docker push $(IMAGE):$(VERSION)
 
 run:
-	docker run -d -p 8080:8080 --name $(NAME) $(IMAGE)
+	sudo docker run -d -p 8080:8080 --name $(NAME) $(IMAGE)
 
 start: run
 	
 stop:
-	docker rm -f $(NAME)
+	sudo docker rm -f $(NAME)
 
 test:
 	./test.lsd
 	
 login:
-	docker exec -it $(NAME) /bin/bash
+	sudo docker exec -it $(NAME) /bin/bash
 
 help:
 	@echo

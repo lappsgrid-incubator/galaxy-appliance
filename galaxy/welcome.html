@@ -9,8 +9,8 @@
     <div class="document">
         <div class="jumbotron">
         	<div class="container">
-				<h1>DEIIS 11-791</h1>
-				<h3>Design and Engineering of Intelligent Information Systems</h3>
+				<h1>LAPPS/Galaxy</h1>
+				<h3>A Toolbox For Designing Intelligent Information Systems</h3>
 				<hr/>
 				<p>Information services provided by the LAPPS and Galaxy projects.</p>
         	</div>
@@ -20,8 +20,8 @@
         		<h1 class="panel-title">Introduction</h1>
         	</div>
         	<div class="panel-body">
-        		<p>This page should be replaced with useful information, i.e. links to readings and handouts, instructions for turning in assignments, due dates. etc.</p>
-        		<p>Please edit the welcome.html file before building the Galaxy Docker image.</p>
+        		<p>This is an example LAPPS Grid Galaxy <em>appliance</em>. A Galaxy <em>appliance</em> is a network of Docker containers running Galaxy and selected LAPPS Grid services. See the <a href="https://github.com/lappsgrid-incubator/galaxy-appliance">Appliance Builder</a> project for information on how you can build your own custom LAPPS Grid Galaxy Appliance.</p>
+        		<p>Please be sure to edit this welcome.html file before building your Galaxy Docker Appliance!</p>
         	</div>
         </div>
         <div class="panel panel-warning">
@@ -29,14 +29,8 @@
         		<h1 class="panel-title">Caveats</h1>
         	</div>
         	<div class="panel-body">
-				<p>While Galaxy ensures that the inputs to a processing tool use
-				the correct file format (GATE tools require GATE/XML, the other tools 
-				require LIF) it does not currently ensure the document contains the required
-				annotation types.  For example; part of speech taggers typically require
-				the input document to contain <tt>Token</tt> annotations.</p>
-				<p>Converters exist to convert between GATE/XML and LIF, however these
-				converters must be inserted manually into a workflow at the proper places,
-				say between the GATE Tokenizer and the Stanford POSTagger.</p>
+				<p>While Galaxy ensures that the inputs to a processing tool use the correct file format (GATE tools require GATE/XML, the other tools require LIF) it does not currently ensure the document contains the required annotation types.  For example; part of speech taggers typically require the input document to contain <tt>Token</tt> annotations.</p>
+				<p>Converters exist to convert between GATE/XML and LIF, however these converters must be inserted manually into a workflow at the proper places,		 say between the GATE Tokenizer and the Stanford POSTagger.</p>
         	</div>
         </div>
         <br/>

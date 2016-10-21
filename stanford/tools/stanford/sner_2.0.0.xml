@@ -1,5 +1,5 @@
 <tool id='stanford.sner_2.0.0' name='Selectable Stanford NER v2.1.0' version='1.0.0'>
-  <description>Selectable Stanford Named Entity Recognizer (Vassar)</description>
+  <description>Selectable Stanford Named Entity Recognizer</description>
   <command interpreter='lsd'>sner.lsd $model $input $output</command>
   <inputs>
 	  <param name='input' type='data' format='lif' label='input' />

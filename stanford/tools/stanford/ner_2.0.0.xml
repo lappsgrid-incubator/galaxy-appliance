@@ -1,5 +1,5 @@
 <tool id='stanford.ner_2.0.0' name='Stanford NamedEntityRecognizer v2.0.0' version='2.0.0'>
-  <description>Stanford Named Entity Recognizer (Vassar)</description>
+  <description>Stanford Named Entity Recognizer</description>
   <command interpreter='lsd'>invoke.lsd ner $input $output</command>
   <inputs>
     <param name='input' type='data' format='lif' label='input' />

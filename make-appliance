@@ -2,6 +2,12 @@
 set -e
 
 #export APPLIANCE=deiis
+make_docker=false
+if [ "$1" = "-b" ] ; then
+	make_docker=true
+	shift
+fi
+
 export APPLIANCE=$1
 shift
 
@@ -21,9 +27,11 @@ while [ -n "$1" ] ; do
 		OPTS="-m"
 	fi
 	tce $OPTS -c build/tool_conf.xml -o build/tool_conf.xml $1/tool_conf.groovy
-	cd $1 
-	make
-	cd -
+	if [ "$make_docker" = "true" ] ; then
+		cd $1 
+		make
+		cd -
+	fi
 	shift
 done
 

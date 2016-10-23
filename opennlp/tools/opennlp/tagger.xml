@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tool id="opennlp.tagger" name="OpenNLP POS Tagger" version="1.0.0">
+  <description>assigns part of speech tags to tokens.</description>
+  <command interpreter="lsd">invoke.lsd POSTagger $input $output</command>
+  <inputs>
+    <param name="input" type="data" format="lif" label="Input"/>
+  </inputs>
+  <outputs>
+    <data name="output" format="lif" label="POS Tags"/>
+  </outputs>
+  <help>Requires tokenized text in a LIF container.</help>
+</tool>

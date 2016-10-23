@@ -1,0 +1,7 @@
+String name = args[0]
+File input = new File(args[1])
+File output = new File(args[2])
+
+String url = "http://opennlp:8080/opennlp/2.0.0/services/$name"
+ServiceClient service = new ServiceClient(url)
+output.text = service.execute(input.text)

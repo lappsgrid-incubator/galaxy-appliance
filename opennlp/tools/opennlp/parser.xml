@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tool id="opennlp.parser" name="OpenNLP Parser" version="1.0.0">
+  <description>OpenNLP parser</description>
+  <command interpreter="lsd">invoke.lsd Parser $input $output</command>
+  <inputs>
+    <param name="input" type="data" format="lif" label="Input"/>
+  </inputs>
+  <outputs>
+    <data name="output" format="lif" label="Parse"/>
+  </outputs>
+  <help>Requires sentence and token+pos annotations.</help>
+</tool>

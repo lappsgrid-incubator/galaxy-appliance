@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tool id="opennlp.tokenizer" name="OpenNLP Tokenizer" version="1.0.0">
+  <description>tokenizes the input text.</description>
+  <command interpreter="lsd">invoke.lsd Tokenizer $input $output</command>
+  <inputs>
+    <param name="input" type="data" format="lif" label="Input"/>
+  </inputs>
+  <outputs>
+    <data name="output" format="lif" label="Tokens"/>
+  </outputs>
+  <help>The tokenizer accepts text documents in LIF containers.</help>
+</tool>

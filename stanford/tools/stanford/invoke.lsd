@@ -4,7 +4,7 @@ String service = args[0]
 String input = args[1]
 String output = args[2]
 
-def map [
+def map = [
 	tokenizer: 'Tokenizer',
 	tagger: 'Tagger',
 	splitter: 'SentenceSplitter',

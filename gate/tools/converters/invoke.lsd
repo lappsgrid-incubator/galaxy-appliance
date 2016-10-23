@@ -7,7 +7,7 @@ String input = args[1]
 boolean prettyPrint = args[2] as Boolean
 String output = args[3]
 
-String url = "http://gate:8080/${service}" 
+String url = "http://gate:8080/GateConverters/2.0.0/services/${service}" 
 ServiceClient client = new ServiceClient(url)
 String json = new File(input).text
 json = client.execute(json)

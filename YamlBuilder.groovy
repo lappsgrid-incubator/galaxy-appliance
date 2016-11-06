@@ -17,7 +17,7 @@ EXAMPLE
 }
 
 String appliance = args[0]
-args = args[1..-1]
+//args = args[1..-1]
 
 int port = 8000
 println "docker network create -d overlay --subnet 192.168.0.0/16 appliance-network"

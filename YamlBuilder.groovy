@@ -19,8 +19,8 @@ EXAMPLE
 String appliance = args[0]
 args = args[1..-1]
 
-/**
 int port = 8000
+/***
 println "docker network create -d overlay --subnet 192.168.0.0/16 appliance-network"
 args.each {
 	println "docker service create --name $it -p ${++port}:8080/tcp --network appliance-network lappsgrid/$it"

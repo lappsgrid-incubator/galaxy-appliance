@@ -25,10 +25,10 @@ The `make-appliance` script expects the [Tool Config Editor](https://github.com/
 ## Usage
 
 ```bash
-$> ./make-appliance module [module ...]
+$> ./make-appliance identifier module [module ...]
 ```
 
-where a `module` is the name of the Docker containers to include in the appliance.
+where the `identifier` is just a prefix for names of Docker containers, and a `module` is the name of the Docker containers to include in the appliance.
 
 **EXAMPLE**
 

@@ -14,16 +14,6 @@ cli.e(longOpt:'export', args:1, 'define the directory to mount as the /export vo
 
 def params = cli.parse(args) 
 if (args.size() == 0 || params.h) {
-	/*
-	println '''
-USAGE 
-    groovy YamlBuilder.groovy <repository name> module [module ...]
-
-EXAMPLE
-    groovy YamlBuilder.groovy lappsgrid masc oaqa lingpipe gate stanford
-    
-'''
-	*/
 	cli.usage()
 	return
 }

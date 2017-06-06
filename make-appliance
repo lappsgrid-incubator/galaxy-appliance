@@ -3,11 +3,37 @@ set -e
 
 #export APPLIANCE=deiis
 make_docker=false
-if [ "$1" = "-b" ] ; then
-	make_docker=true
-	shift
-fi
+export_dir=
 
+while getopts "be:h" opt ; do
+	case $opt in
+		b)
+			echo "option -b"
+			make_docker=true
+			;;
+		e)
+			echo "option -e $OPTARG"
+			export_dir=$OPTARG
+			;;
+		h)
+			echo "./make-appliance [-b] [-e <EXPORT_DIR>] name image [image...]"
+			exit 1
+			;;
+		*)
+			echo "Unhandled option: $1"
+			exit 1
+			;;	
+		\?)
+			echo "Invalid option: -$OPTARG" >&2
+			exit 1
+			;;
+		:)
+			echo "Option -$OPTARG requires an argument." >&2
+			exit 1
+			;;
+	esac
+done
+shift $((OPTIND-1))
 export APPLIANCE=$1
 shift
 
@@ -17,7 +43,11 @@ if [ -d build ] ; then
 fi
 cp -R galaxy build
 
-groovy YamlBuilder.groovy $APPLIANCE $@ > docker-compose.yml
+if [ -n "$export_dir" ] ; then
+	groovy YamlBuilder.groovy -e $export_dir $APPLIANCE $@ > docker-compose.yml
+else
+	groovy YamlBuilder.groovy $APPLIANCE $@ > docker-compose.yml
+fi
 
 while [ -n "$1" ] ; do
 	echo "Building $1"

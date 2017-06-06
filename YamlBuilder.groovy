@@ -35,7 +35,8 @@ args.each {
 
 println """    galaxy:
         image: lappsgrid/galaxy-appliance
-        build: ./build"""
+        build: ./build
+        privileged: true"""
         if (params.e) {
         	println "        volumes:"
         	println "            - ${params.e}:/export/"

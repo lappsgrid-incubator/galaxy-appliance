@@ -6,10 +6,10 @@ gate:
 
 stanford:
 	cd stanford; make
-	
+
 lingpipe:
 	cd lingpipe; make
-	
+
 masc:
 	cd masc; make
 

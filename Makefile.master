@@ -10,13 +10,13 @@ latest:
 image:
 	../packages.sh update
 	sudo docker build -t $(IMAGE):$(VERSION) .
-	
+
 packages:
 	../packages.sh download
-	
+
 push:
 	sudo docker push $(IMAGE)
-	
+
 tag:
 	sudo docker tag $(IMAGE) $(IMAGE):$(VERSION) && docker push $(IMAGE):$(VERSION)
 
@@ -30,7 +30,7 @@ stop:
 
 test:
 	./test.lsd
-	
+
 login:
 	sudo docker exec -it $(NAME) /bin/bash
 

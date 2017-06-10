@@ -1,3 +1,5 @@
+.PHONY: packages latest clean
+
 VERSION=$(shell cat VERSION)
 export PACKAGE_LIST=$(shell cat package_list.txt)
 
@@ -13,6 +15,9 @@ image:
 
 packages:
 	../packages.sh download
+
+clean:
+	rm -rf packages
 
 push:
 	sudo docker push $(IMAGE)

@@ -1,3 +1,4 @@
+.PHONY: all gate stanford lingpipe masc oaqa
 
 all: gate stanford lingpipe masc oaqa
 

@@ -20,6 +20,9 @@ oaqa:
 	cd oaqa; make
 
 clean:
-	for dir in $(ALL) ; do make -C $dir clean ; done
-	make -C galaxy clean
+	make -C gate clean
+	make -C stanford clean
+	make -C lingpipe clean
+	make -C masc clean
+	make -C oaqa clean
 

@@ -28,6 +28,7 @@ A **LAPPS/Galaxy Docker Appliance**, or simply an *appliance*, is a network of D
 
 ## Usage
 
+```
 $> ./make-appliance identifier module [module ...]
 ```
 
@@ -35,7 +36,7 @@ where the `identifier` is just a prefix for names of Docker containers, and a `m
 
 **EXAMPLE**
 
-```bash
+```
 $> ./make-appliance lappsgrid gate masc oaqa
 $> docker-compose up
 ```
@@ -63,7 +64,7 @@ There are two ways to run a war file in a Docker container:
 
 Create a new directory and copy the *Service.war* file. For this example it is assumed the *Service.war* file has been copied to `/home/user/webapp`, but any local directory will do.  The use the `-v` option to mount this as a volume in the Docker image
 
-```bash
+```
 $> docker run -d -p 8080:8080 -v /home/user/webapp:/var/lib/tomcat7/webapps
 ```
 
@@ -89,6 +90,14 @@ See [here](http://wiki.lappsgrid.org/technical/docker.html) for more information
 1. Explain tool wrappers. See https://docs.galaxyproject.org/en/latest/dev/schema.html
 1. Script used to run the tool
 1. Updating the tool_conf.xml file.
+
+**Installing Galaxy appliances**
+
+During the Docker and Docker Compose setup on a Jetstream instance the following was required
+
+```
+sudo /var/lib/dpkg/info/ca-certificates-java.postinst configure
+```
 
 ## Docker Compose
 

@@ -4,7 +4,7 @@
  */
 
 // A function to generate the full path to a GATE tool xml
-def declare = { "gate/${it}_2.0.0.xml" }
+def declare = { "gate/${it}_2.2.0.xml" }
 
 // A list of all GATE services.
 def service_list = ['tokenizer', 'splitter', 'tagger', 'ner', 'npchunker',
@@ -16,8 +16,8 @@ def service = [:]
 service_list.each { service[it] = declare it }
 
 // Add the converter services for completeness
-service.gate2json = 'converters/gate2json_2.0.0.xml'
-service.json2gate = 'converters/json2gate_2.0.0.xml'
+service.gate2json = 'converters/gate2json_2.1.0.xml'
+service.json2gate = 'converters/json2gate_2.1.0.xml'
 
 // Declare a section for all GATE tools
 gate 'GATE', {

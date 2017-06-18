@@ -1,5 +1,5 @@
 vassar-gate 
 gate-models 
-GateConverter_2.0.0 
-GateServices_2.0.0
+GateConverter_2.1.0 
+GateServices_2.2.0
 

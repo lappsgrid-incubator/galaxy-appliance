@@ -3,7 +3,7 @@
 # This image extends the tomcat7 image and adds the Lapps services running
 # on the Vassar node.
 
-FROM lappsgrid/tomcat7:1.1.0
+FROM lappsgrid/tomcat7:1.2.2
 
 ADD ./packages/MASC-3.0.0.tgz /var/corpora/MASC-3.0.0
 ADD ./packages/MASC-3.0.0-json.tgz /var/corpora/
